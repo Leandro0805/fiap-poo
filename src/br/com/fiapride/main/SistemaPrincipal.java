@@ -7,11 +7,10 @@ public class SistemaPrincipal {
 public static void main(String[] args) {
 	
 	//Definição do objeto e dos seus atributos
-	Fogao meuFogao = new Fogao();
+	Fogao meuFogao = new Fogao("Pequeno",4);
 
-	meuFogao.setTamanho("pequeno");
+	
 	meuFogao.setLigado(false);
-	meuFogao.setQuantidade_bocas(4);
 	
 	//Teste dos atributos 
 	System.out.println("O tamanho do meu fogão é " + meuFogao.getTamanho());
@@ -40,7 +39,7 @@ public static void main(String[] args) {
 	System.out.println("Bocas acesas: " + meuFogao.getBocas_acesas());
 	
 	//Objeto professorFogao
-	Fogao professorFogao = new Fogao();
+	Fogao professorFogao = new Fogao("Medio",4);
 
 	professorFogao.setTamanho("grande");
 	professorFogao.setLigado(true);

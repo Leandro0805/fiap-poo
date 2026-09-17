@@ -7,6 +7,12 @@ public class Fogao {
     private int quantidade_bocas;
     private int bocas_acesas;
 
+    public Fogao (String tamanho, int quantidade_bocas) {
+    	this.setTamanho(tamanho);
+    	this.setQuantidade_bocas(quantidade_bocas);
+    	System.out.println("O fogão possui o tamanho" + this.tamanho + "e uma quantidade de" + this.quantidade_bocas + " bocas");
+    	
+    }
     // Get e set de tamanho
     public String getTamanho() {
         return tamanho;
@@ -80,4 +86,5 @@ public class Fogao {
             );
         }
     }
+    
 }
