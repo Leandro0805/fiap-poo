@@ -1,64 +1,72 @@
 package br.com.fiapride.model;
 
 public class Fogao {
-
+    private Proprietario proprietario;
     private String tamanho;
     private boolean ligado;
-    private int quantidade_bocas;
-    private int bocas_acesas;
+    private int quantidadeBocas;
+    private int bocasAcesas;
 
-    public Fogao (String tamanho, int quantidade_bocas) {
-    	this.setTamanho(tamanho);
-    	this.setQuantidade_bocas(quantidade_bocas);
-    	System.out.println("O fogão possui o tamanho" + this.tamanho + "e uma quantidade de" + this.quantidade_bocas + " bocas");
-    	
-    }
-    // Get e set de tamanho
-    public String getTamanho() {
-        return tamanho;
-    }
-
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
-    }
-
-    // Get e set de ligado
-    public boolean isLigado() {
-        return ligado;
-    }
-
-    public void setLigado(boolean ligado) {
-        this.ligado = ligado;
-    }
-
-    // Get e set de quantidade_bocas
-    public int getQuantidade_bocas() {
-        return quantidade_bocas;
-    }
-
-    public void setQuantidade_bocas(int quantidade_bocas) {
-        if (quantidade_bocas > 0) {
-            this.quantidade_bocas = quantidade_bocas;
+    public Fogao(Proprietario proprietario, String tamanho, int quantidadeBocas) {
+        // Validação do Proprietário
+        if (proprietario == null) {
+            System.out.println("Erro: Todo fogão precisa de um proprietário válido!");
         } else {
-            System.out.println("Quantidade de bocas inválida!");
+            this.proprietario = proprietario;
         }
+
+        // Validação do Tamanho
+        if (tamanho == null || tamanho.trim().isEmpty()) {
+            System.out.println("Erro: Tamanho inválido!");
+            this.tamanho = "Indefinido";
+        } else {
+            this.tamanho = tamanho;
+        }
+
+        // Validação da Quantidade de Bocas
+        if (quantidadeBocas > 0) {
+            this.quantidadeBocas = quantidadeBocas;
+        } else {
+            System.out.println("Erro: Quantidade de bocas deve ser maior que zero!");
+            this.quantidadeBocas = 1; // Valor padrão de segurança
+        }
+        
+        this.ligado = false;
+        this.bocasAcesas = 0;
     }
 
-    // Get e set de bocas_acesas
-    public int getBocas_acesas() {
-        return bocas_acesas;
-    }
-
-    public void setBocas_acesas(int bocas_acesas) {
-        if (bocas_acesas >= 0 && bocas_acesas <= this.quantidade_bocas) {
-            this.bocas_acesas = bocas_acesas;
+    // Encapsulamento: setBocasAcesas passa a ser private para impedir acesso externo direto
+    private void setBocasAcesas(int bocasAcesas) {
+        if (bocasAcesas >= 0 && bocasAcesas <= this.quantidadeBocas) {
+            this.bocasAcesas = bocasAcesas;
         } else {
             System.out.println("Quantidade de bocas acesas inválida!");
         }
     }
 
-    // Função para ligar o fogão
-    public void ligar_fogao() {
+    // Getters de leitura
+    public Proprietario getProprietario() {
+        return proprietario;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public int getQuantidadeBocas() {
+        return quantidadeBocas;
+    }
+
+    public int getBocasAcesas() {
+        return bocasAcesas;
+    }
+
+    // Métodos de negócio (comportamento)
+    public void ligarFogao() {
         if (ligado) {
             System.out.println("O seu fogão já está ligado!");
         } else {
@@ -67,24 +75,20 @@ public class Fogao {
         }
     }
 
-    // Função para ligar uma quantidade de bocas
-    public void ligar_bocas(int bocas_acessas) {
+    public void desligarFogao() {
+        this.ligado = false;
+        this.bocasAcesas = 0;
+        System.out.println("Fogão desligado e todas as bocas foram apagadas.");
+    }
 
+    public void ligarBocas(int quantidade) {
         if (!ligado) {
-            System.out.println(
-                "Não é possível acender as bocas com o fogão desligado!"
-            );
-
-        } else if (bocas_acessas <= 0 || bocas_acessas > quantidade_bocas) {
+            System.out.println("Não é possível acender as bocas com o fogão desligado!");
+        } else if (quantidade <= 0 || quantidade > quantidadeBocas) {
             System.out.println("Quantidade de bocas inválida!");
-
         } else {
-            setBocas_acesas(bocas_acessas);
-
-            System.out.println(
-                "Foram acendidas " + bocas_acessas + " bocas."
-            );
+            setBocasAcesas(quantidade);
+            System.out.println("Foram acendidas " + quantidade + " bocas.");
         }
     }
-    
 }

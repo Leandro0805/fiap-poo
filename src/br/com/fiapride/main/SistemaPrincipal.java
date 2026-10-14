@@ -1,56 +1,36 @@
 package br.com.fiapride.main;
 
 import br.com.fiapride.model.Fogao;
+import br.com.fiapride.model.Proprietario;
 
 public class SistemaPrincipal {
 
-public static void main(String[] args) {
-	
-	//Definição do objeto e dos seus atributos
-	Fogao meuFogao = new Fogao("Pequeno",4);
-
-	
-	meuFogao.setLigado(false);
-	
-	//Teste dos atributos 
-	System.out.println("O tamanho do meu fogão é " + meuFogao.getTamanho());
-	System.out.println("Meu fogão está ligado? " + meuFogao.isLigado());
-
-	//Testando as função ligar_fogao
-	
-	// Teste válido: ligar o fogão
-	meuFogao.ligar_fogao();
-
-	// Teste inválido: tentar ligar novamente
-	meuFogao.ligar_fogao();
-
-	
-	//Testando a função ligar_bocas
-	// Teste válido: acender 2 bocas
-	meuFogao.ligar_bocas(2);
-
-	// Teste inválido: o fogão possui apenas 4 bocas
-	meuFogao.ligar_bocas(5);
-
-	// Teste inválido: quantidade menor ou igual a zero
-	meuFogao.ligar_bocas(0);
-
-	//Quantidade de bocas acesas
-	System.out.println("Bocas acesas: " + meuFogao.getBocas_acesas());
-	
-	//Objeto professorFogao
-	Fogao professorFogao = new Fogao("Medio",4);
-
-	professorFogao.setTamanho("grande");
-	professorFogao.setLigado(true);
-	professorFogao.setQuantidade_bocas(6);
-
-	System.out.println("O tamanho do fogão do professor é "
-			+ professorFogao.getTamanho());
-
-	System.out.println("O fogão do professor está ligado? "
-			+ professorFogao.isLigado());
-}
-
-
+    public static void main(String[] args) {
+        
+        System.out.println("=== TESTE 1: Caminho Válido ===");
+        Proprietario leandro = new Proprietario("Leandro");
+        Fogao meuFogao = new Fogao(leandro, "Pequeno", 4);
+        
+        System.out.println("Proprietário: " + meuFogao.getProprietario().getNome());
+        System.out.println("Tamanho: " + meuFogao.getTamanho());
+        System.out.println("Quantidade de bocas: " + meuFogao.getQuantidadeBocas());
+        
+        // Teste de uso do fogão
+        meuFogao.ligarBocas(2); // Deve recusar pois está desligado
+        meuFogao.ligarFogao();  // Liga
+        meuFogao.ligarBocas(2); // Acende 2 bocas
+        System.out.println("Bocas acesas atualmente: " + meuFogao.getBocasAcesas());
+        
+        System.out.println("\n=== TESTE 2: Validações de Erro e Regras de Negócio ===");
+        // Teste de criação com dados inválidos (construtores devem barrar)
+        Proprietario invalido = new Proprietario("");
+        Fogao fogaoInvalido = new Fogao(null, "", -2);
+        
+        System.out.println("\n=== TESTE 3: Fogão do Professor ===");
+        Proprietario igor = new Proprietario("Igor");
+        Fogao fogaoProfessor = new Fogao(igor, "Grande", 6);
+        
+        System.out.println("Proprietário do fogão do professor: " + fogaoProfessor.getProprietario().getNome());
+        System.out.println("Bocas: " + fogaoProfessor.getQuantidadeBocas());
+    }
 }
