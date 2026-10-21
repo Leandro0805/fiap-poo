@@ -21,6 +21,10 @@ public class FogaoGas extends Fogao {
 	public void prepararParaUso() {
 	    System.out.println("Fogão a gás: verificando o fornecimento de gás.");
 	}
-		
 	
+	//sobrescrevendo a classe abstrata de Fogao
+	@Override
+	public void tipoEnergia() {
+		System.out.println("Esse fogão é abastecido tanto por GLP (gás liquefeito de petróleo) como por GN (gás natural). Por favor, alimente-o a uma dessas opções ");
+		}
 }

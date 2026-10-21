@@ -22,4 +22,11 @@ public class FogaoInducao extends Fogao {
 	    System.out.println("Fogão de indução: verificando se a panela é compatível.");
 	}
 	
+	//sobrescrevendo a classe abstrata de Fogao
+	@Override
+	public void tipoEnergia() {
+		System.out.println("Esse fogão é abastecido por energia elétrica. Por favor, conecte-o a rede elétrica");
+	}
+	
+	
 }

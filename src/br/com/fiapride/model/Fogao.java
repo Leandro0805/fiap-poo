@@ -1,6 +1,6 @@
 package br.com.fiapride.model;
 
-public class Fogao {
+public abstract class Fogao {
     private Proprietario proprietario;
     private String tamanho;
     private boolean ligado;
@@ -91,8 +91,11 @@ public class Fogao {
             System.out.println("Foram acendidas " + quantidade + " bocas.");
         }
     }
-    //Função genérica que se adaptará a classe filha
+    //Método genérico que se adaptará à classe filha
     public void prepararParaUso() {
         System.out.println("Preparando o fogão para utilização.");
-    }
+}
+ // Método abstrato: cada tipo de fogão deve informar sua fonte de energia, pois esse comportamento depende da especialização da classe.
+	public abstract void tipoEnergia();
+	
 }
