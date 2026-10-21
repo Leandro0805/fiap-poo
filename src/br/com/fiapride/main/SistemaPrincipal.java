@@ -1,6 +1,9 @@
 
 package br.com.fiapride.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.fiapride.model.Fogao;
 import br.com.fiapride.model.FogaoGas;
 import br.com.fiapride.model.FogaoInducao;
@@ -20,8 +23,8 @@ public class SistemaPrincipal {
 
         // Teste de uso do fogão
         meuFogao.ligarBocas(2); // Deve recusar pois está desligado
-        meuFogao.ligarFogao();  // Liga
-        meuFogao.ligarBocas(2); // Acende 2 bocas
+        meuFogao.ligarFogao();
+        meuFogao.ligarBocas(2);
         System.out.println("Bocas acesas atualmente: " + meuFogao.getBocasAcesas());
 
         System.out.println("\n=== TESTE 2: Validações de Erro e Regras de Negócio ===");
@@ -86,5 +89,32 @@ public class SistemaPrincipal {
         fogaoGas.ligarBocas(3);
         System.out.println("Bocas acesas: "
                 + fogaoGas.getBocasAcesas());
+
+        System.out.println("\n=== TESTE 6: Sobrescrita de Métodos (@Override) ===");
+
+        // Teste do método genérico e dos métodos sobrescritos
+        System.out.println("\nPreparação do fogão convencional:");
+        meuFogao.prepararParaUso();
+
+        System.out.println("\nPreparação do fogão de indução:");
+        fogaoInducao.prepararParaUso();
+
+        System.out.println("\nPreparação do fogão a gás:");
+        fogaoGas.prepararParaUso();
+
+        System.out.println("\n=== TESTE 7: Polimorfismo com List e for ===");
+
+        // Criação de uma lista tipada com a superclasse Fogao
+        List<Fogao> listaFogaos = new ArrayList<>();
+
+        // Adição dos objetos à lista
+        listaFogaos.add(meuFogao);
+        listaFogaos.add(fogaoInducao);
+        listaFogaos.add(fogaoGas);
+
+        // Percorre a lista e chama o método em cada objeto
+        for (Fogao fogao : listaFogaos) {
+            fogao.prepararParaUso();
+        }
     }
 }

@@ -16,6 +16,10 @@ public class FogaoInducao extends Fogao {
 		return potenciaMaxima;
 	}
 	
-	
+	//Função adaptada à classe FogaoInducao
+	@Override
+	public void prepararParaUso() {
+	    System.out.println("Fogão de indução: verificando se a panela é compatível.");
+	}
 	
 }

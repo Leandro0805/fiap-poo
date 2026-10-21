@@ -15,7 +15,12 @@ public class FogaoGas extends Fogao {
 			return tipoGas;
 		}
 		
-		
+	
+	//Função adaptada à classe FogaoInducao
+	@Override
+	public void prepararParaUso() {
+	    System.out.println("Fogão a gás: verificando o fornecimento de gás.");
+	}
 		
 	
 }

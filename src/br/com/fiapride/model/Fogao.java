@@ -91,4 +91,8 @@ public class Fogao {
             System.out.println("Foram acendidas " + quantidade + " bocas.");
         }
     }
+    //Função genérica que se adaptará a classe filha
+    public void prepararParaUso() {
+        System.out.println("Preparando o fogão para utilização.");
+    }
 }
